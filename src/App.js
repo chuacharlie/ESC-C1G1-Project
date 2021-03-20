@@ -16,7 +16,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn reactjs
-          {/* comment  */}
+
         </a>
       </header>
     </div>
