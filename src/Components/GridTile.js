@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class GridTile extends Component {
-  render() {
-    return (
-      <div>
-        
-      </div>
-    )
-  }
+function GridTile() {
+  return (
+    <div>
+      
+    </div>
+  )
 }
 
 export default GridTile
