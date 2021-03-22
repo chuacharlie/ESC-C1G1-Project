@@ -1,0 +1,25 @@
+[debug] [2021-03-22T12:51:46.637Z] ----------------------------------------------------------------------
+[debug] [2021-03-22T12:51:46.638Z] Command:       /usr/local/bin/firebase /Users/xiangyuanshang/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase init
+[debug] [2021-03-22T12:51:46.639Z] CLI Version:   9.6.1
+[debug] [2021-03-22T12:51:46.639Z] Platform:      darwin
+[debug] [2021-03-22T12:51:46.639Z] Node Version:  v12.18.1
+[debug] [2021-03-22T12:51:46.644Z] Time:          Mon Mar 22 2021 20:51:46 GMT+0800 (Singapore Standard Time)
+[debug] [2021-03-22T12:51:46.644Z] ----------------------------------------------------------------------
+[debug] [2021-03-22T12:51:46.644Z] 
+[debug] [2021-03-22T12:51:46.650Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-03-22T12:51:46.650Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/xiangyuanshang/Documents/GitHub/ESC-C1G1-Project
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
