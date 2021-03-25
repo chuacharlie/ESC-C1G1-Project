@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     width: 500,
     backgroundColor: "lightblue",
     elevation: 0,
+    borderRadius: 20,
   },
   button: {
     background: "#01579b",
