@@ -4,10 +4,9 @@ import LoginPage from "./Pages/LoginPage";
 //import notfound from "./Pages/notfound";
 import ProfDashboard from "./Pages/ProfDashboard"
 import React, {Component} from "react";
-
 import StudentDashboard from "./Pages/StudentDashboard"
 //xy
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -28,7 +27,7 @@ firebase.initializeApp({
 }
 )
 //edit login page name
-const LoginPage=(props) =>{
+const LoginCheckPage=(props) =>{
   const history=useHistory;
   const [credentials,setCredentials]=useState({email:"",password:""});
   return <div>
