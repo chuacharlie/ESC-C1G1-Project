@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     height: "12%",
     width: "80%",
     padding: "0 30px",
+    marginTop:8,
   },
   box: {
     width: "100%",
@@ -34,13 +35,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginPage = () => {
+const LoginPage = ({onClickSignUp}) => {
   const style = useStyles();
 
   return (
     <div className={style.root}>
       <Box width="100%" height={80} textAlign="center" pt={5}>
-        Welcome to Smart Class
+        <h2 style={{ textAlign: "center" }}>
+          Welcome to Smart Class
+        </h2>
       </Box>
       <Grid
         container
@@ -58,9 +61,9 @@ const LoginPage = () => {
               alignItems="center"
               className={style.box}
             >
-              <Box width="100%" textAlign="center" py={4}>
-                Instructors Login
-              </Box>
+              <h3 style={{ textAlign: "center" }}>
+                Instructor Login
+              </h3>
               <TextField
                 id="instructor-email"
                 variant="outlined"
@@ -80,6 +83,14 @@ const LoginPage = () => {
               >
                 Login as Instructor
               </Button>
+              <Button
+                className={style.button}
+                to={"/SignUpPage"}
+                component={Link}
+                // onClick = {() => onClickSignUp("instructor")}
+              >
+                Sign Up as Instructor
+              </Button>
             </Box>
           </Paper>
         </Grid>
@@ -93,9 +104,9 @@ const LoginPage = () => {
               alignItems="center"
               className={style.box}
             >
-              <Box width="100%" textAlign="center" py={4}>
-                Students Login
-              </Box>
+              <h3 style={{ textAlign: "center" }}>
+                Student Login
+              </h3>
               <TextField
                 id="student-email"
                 variant="outlined"
@@ -114,6 +125,14 @@ const LoginPage = () => {
                 component={Link}
               >
                 Login as Student
+              </Button>
+              <Button
+                className={style.button}
+                to={"/SignUpPage"}
+                component={Link}
+                // onClick = {() => onClickSignUp("student")}
+              >
+                Sign Up as Student
               </Button>
             </Box>
           </Paper>
