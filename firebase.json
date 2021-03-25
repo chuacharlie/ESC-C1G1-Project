@@ -1,4 +1,10 @@
 {
+  "database": {
+    "rules": "atabase.rules.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
   "hosting": {
     "public": "public",
     "ignore": [
@@ -12,13 +18,5 @@
         "destination": "/index.html"
       }
     ]
-  },
-  "emulators": {
-    "hosting": {
-      "port": 5000
-    },
-    "ui": {
-      "enabled": true
-    }
   }
 }
