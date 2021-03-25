@@ -29,9 +29,9 @@ function ProfDashboard() {
         Select a class to begin presentation
       </h1>
       <Grid container justify="center" spacing={2} className={style.grid}>
-        <GridTile component={Link} to="/" />
-        <GridTile component={Link} to="/" />
-        <GridTile component={Link} to="/" />
+        <GridTile component={Link} to="/ProfPresentationURL" />
+        <GridTile component={Link} to="/ProfPresentationURL" />
+        <GridTile component={Link} to="/ProfPresentationURL" />
       </Grid>
     </div>
   );

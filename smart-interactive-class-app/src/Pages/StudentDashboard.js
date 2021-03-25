@@ -27,9 +27,9 @@ function StudentDashboard() {
     <div>
       <h1 style={{ textAlign: "center" }}>Select a class to attend</h1>
       <Grid container justify="center" spacing={2} className={style.grid}>
-        <GridTile component={Link} to="/" />
-        <GridTile component={Link} to="/" />
-        <GridTile component={Link} to="/" />
+        <GridTile component={Link} to="/StudentSlidesURL" />
+        <GridTile component={Link} to="/StudentSlidesURL" />
+        <GridTile component={Link} to="/StudentSlidesURL" />
       </Grid>
     </div>
   );

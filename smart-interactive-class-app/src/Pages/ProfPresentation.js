@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
     width: 500,
     backgroundColor: "lightblue",
     elevation: 0,
-    borderRadius: 20,
   },
   button: {
     background: "#01579b",
@@ -23,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     height: "12%",
     width: "80%",
     padding: "0 30px",
-    marginTop:8,
   },
   box: {
     width: "100%",
@@ -35,18 +33,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginPage = ({onClickSignUp}) => {
+const ProfPresentation = () => {
   const style = useStyles();
-
-  const history=useHistory;
-  const [credentials,setCredentials]=useState({email:"",password:""});
 
   return (
     <div className={style.root}>
       <Box width="100%" height={80} textAlign="center" pt={5}>
-        <h2 style={{ textAlign: "center" }}>
-          Welcome to Smart Class
-        </h2>
+        Prof's actions below
       </Box>
       <Grid
         container
@@ -64,35 +57,27 @@ const LoginPage = ({onClickSignUp}) => {
               alignItems="center"
               className={style.box}
             >
-              <h3 style={{ textAlign: "center" }}>
-                Instructor Login
-              </h3>
+              <Box width="100%" textAlign="center" py={4}>
+                Start Presentation
+              </Box>
               <TextField
                 id="instructor-email"
                 variant="outlined"
-                placeholder="Email"
+                placeholder="NULL"
                 className={style.textField}
               />
               <TextField
                 id="instructor-password"
                 variant="outlined"
-                placeholder="Password"
+                placeholder="NULL"
                 className={style.textField}
               />
               <Button
                 className={style.button}
-                to={"/ProfDashboard"}
+                to={"/"}
                 component={Link}
               >
-                Login as Instructor
-              </Button>
-              <Button
-                className={style.button}
-                to={"/SignUpPage"}
-                component={Link}
-                // onClick = {() => onClickSignUp("instructor")}
-              >
-                Sign Up as Instructor
+                StartPresentation ( Go back to Home)
               </Button>
             </Box>
           </Paper>
@@ -107,35 +92,27 @@ const LoginPage = ({onClickSignUp}) => {
               alignItems="center"
               className={style.box}
             >
-              <h3 style={{ textAlign: "center" }}>
-                Student Login
-              </h3>
+              <Box width="100%" textAlign="center" py={4}>
+                StartPresentation
+              </Box>
               <TextField
                 id="student-email"
                 variant="outlined"
-                placeholder="Email"
+                placeholder="NULL"
                 className={style.textField}
               />
               <TextField
                 id="student-password"
                 variant="outlined"
-                placeholder="Password"
+                placeholder="NULL"
                 className={style.textField}
               />
               <Button
                 className={style.button}
-                to={"/StudentDashboard"}
+                to={"/"}
                 component={Link}
               >
-                Login as Student
-              </Button>
-              <Button
-                className={style.button}
-                to={"/SignUpPage"}
-                component={Link}
-                // onClick = {() => onClickSignUp("student")}
-              >
-                Sign Up as Student
+               StartPresentation ( Go back to Home)
               </Button>
             </Box>
           </Paper>
@@ -147,6 +124,6 @@ const LoginPage = ({onClickSignUp}) => {
   );
 };
 
-export default LoginPage;
+export default ProfPresentation;
 
 //switch to master than commit to master
