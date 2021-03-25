@@ -5,6 +5,9 @@ import LoginPage from "./Pages/LoginPage";
 import ProfDashboard from "./Pages/ProfDashboard"
 import React, {Component} from "react";
 import StudentDashboard from "./Pages/StudentDashboard"
+import ProfPresentation from "./Pages/ProfPresentation"
+import StudentSlides from "./Pages/StudentSlides"
+import PostLectureRating from "./Pages/PostLectureRating"
 
 class App extends Component{
   render(){
@@ -17,6 +20,9 @@ class App extends Component{
   }
       <Route exact path = "/StudentDashboard" component = {StudentDashboard} />
       <Route exact path = "/ProfDashboard" component = {ProfDashboard} />
+      <Route exact path = "/ProfPresentationURL" component = {ProfPresentation} />
+      <Route exact path = "/StudentSlidesURL" component = {StudentSlides} />
+      <Route exact path = "/PostLectureURL" component = {PostLectureRating} />
       <Redirect to = "/404"/>     
 
      
