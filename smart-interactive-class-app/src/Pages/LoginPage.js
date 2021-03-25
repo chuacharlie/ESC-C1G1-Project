@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
 const LoginPage = () => {
   const style = useStyles();
 
+  const history=useHistory;
+  const [credentials,setCredentials]=useState({email:"",password:""});
+
   return (
     <div className={style.root}>
       <Box width="100%" height={80} textAlign="center" pt={5}>

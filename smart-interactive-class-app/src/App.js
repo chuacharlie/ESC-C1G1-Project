@@ -23,7 +23,6 @@ firebase.initializeApp({
     messagingSenderId: "639100449155",
     appId: "1:639100449155:web:d1ddbdfdf2d148b3db46b6",
     measurementId: "G-VL46L5KBHS"
-
 }
 )
 //edit login page name
