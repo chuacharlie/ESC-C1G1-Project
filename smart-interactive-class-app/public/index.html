@@ -48,7 +48,7 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    </script>
+  <script>
        documents.addEventListentener('DOMContentLoaded',function(){
       //firebase.auth().onAuthAtateChanged(user=>{});
       //firebase.database().ref('/path/to/ref').on('value',snapshot=>{});
@@ -57,7 +57,7 @@
      
         try{
          let app=firebase.app();
-          let features=['auth','database','messaging','storage'].filter(feature=>typeof app[feature])==='function' ???
+          let features=['auth','database','messaging','storage'].filter(feature=>typeof app[feature])==='function'
           document.getElementById('load').innerHTML='Firebase SDK loaded with ${features.join(',')}';
 
         }catch(e){
