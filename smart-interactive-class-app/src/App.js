@@ -12,13 +12,17 @@ import ProfDashboard from "./Pages/ProfDashboard"
 import React, {Component} from "react";
 import StudentDashboard from "./Pages/StudentDashboard"
 //xy
-import {useState} from 'react';
-import {useHistory} from 'react-router-dom';
+
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import {useAuthState} from 'react-firebase-hooks/auth';
 import {useCollectionData} from 'react-firebase-hooks/firestore';
+
+import ProfPresentation from "./Pages/ProfPresentation";
+import StudentSlides from "./Pages/StudentSlides";
+import PostLectureRating from "./Pages/PostLectureRating";
+import SignUpPage from "./Pages/SignUpPage";
 
 firebase.initializeApp({
     apiKey: "AIzaSyB8QiVeO7MOXOOT3NlMx_jcSPIqwhI10fE",
@@ -31,32 +35,7 @@ firebase.initializeApp({
     measurementId: "G-VL46L5KBHS"
 }
 )
-//edit login page name
-const LoginCheckPage=(props) =>{
-  const history=useHistory;
-  const [credentials,setCredentials]=useState({email:"",password:""});
-  return <div>
-        <input
-            value={credentials.email}
-            type="text"
-            placeholder='Please enter your e-mail address'
-            onChange={event => setCredentials({email: event.target.value, password: credentials.password})}
-        />
-        <input
-            value={credentials.password}
-            type="password"
-            placeholder='enter your password'
-            onChange={event => setCredentials({email: credentials.email, password: event.target.value})}
-        />
-        <button
-            disabled={ !(/^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/.test(credentials.email)) }
-            onClick={()=>{
-              if (credentials.password === "let-me-in")
-                history.push("/secret");
-            }}
-        >Login</button>
-    </div>
-}
+
 
 // const auth=firebase.auth();
 // const firestore=firebase.firestore();
@@ -75,28 +54,10 @@ const LoginCheckPage=(props) =>{
 //-------------------------------------------------
 class App extends Component{
   render(){
-  return (
+    return (
     <Router>
       <Switch>
-      <Route exact path = "/" component ={LoginPage}/>
-import ProfDashboard from "./Pages/ProfDashboard";
-import React, { Component } from "react";
-import StudentDashboard from "./Pages/StudentDashboard";
-import ProfPresentation from "./Pages/ProfPresentation";
-import StudentSlides from "./Pages/StudentSlides";
-import PostLectureRating from "./Pages/PostLectureRating";
-import SignUpPage from "./Pages/SignUpPage";
-
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <Switch>
-          <Route exact path="/" component={LoginPage} />
-
-          {
-            // <Route exact path = "/404" component = {notfound}/> /.//
-          }
+          <Route exact path = "/" component ={LoginPage}/>
           <Route exact path="/StudentDashboard" component={StudentDashboard} />
           <Route exact path="/ProfDashboard" component={ProfDashboard} />
           <Route
@@ -108,8 +69,8 @@ class App extends Component {
           <Route exact path="/PostLectureURL" component={PostLectureRating} />
           <Route exact path="/SignUpPage" component={SignUpPage} />
           <Redirect to="/404" />
-        </Switch>
-      </Router>
+      </Switch>
+    </Router>
     );
   }
 }
