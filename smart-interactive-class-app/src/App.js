@@ -11,6 +11,7 @@ import LoginPage from "./Pages/LoginPage";
 import ProfDashboard from "./Pages/ProfDashboard";
 import React, { useState } from "react";
 import StudentDashboard from "./Pages/StudentDashboard";
+import ProfViewClass from "./Pages/ProfViewClass";
 //xy
 
 import firebase from "firebase/app";
@@ -19,7 +20,6 @@ import "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
-import ProfPresentation from "./Pages/ProfPresentation";
 import StudentSlides from "./Pages/StudentSlides";
 import PostLectureRating from "./Pages/PostLectureRating";
 import SignUpPage from "./Pages/SignUpPage";
@@ -66,11 +66,11 @@ function App() {
           path="/"
           render={() => <>{<LoginPage onClickSignUp={onClickSignUp} />}</>}
         />
-        <Route exact path="/StudentDashboard" component={StudentDashboard} />
-        <Route exact path="/ProfDashboard" component={ProfDashboard} />
-        <Route exact path="/ProfPresentationURL" component={ProfPresentation} />
-        <Route exact path="/StudentSlidesURL" component={StudentSlides} />
-        <Route exact path="/PostLectureURL" component={PostLectureRating} />
+        <Route path="/StudentDashboard" component={StudentDashboard} />
+        <Route path="/ProfDashboard" component={ProfDashboard} />
+        {/* <Route path="/ProfDashboard/viewClass" component={ProfViewClass} /> */}
+        <Route path="/StudentSlidesURL" component={StudentSlides} />
+        <Route path="/PostLectureURL" component={PostLectureRating} />
         <Route
           exact
           path="/SignUpPage"

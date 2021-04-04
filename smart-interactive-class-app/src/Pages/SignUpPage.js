@@ -77,7 +77,15 @@ const SignUpPage = ({ userType }) => {
             placeholder="Confirm Password"
             className={style.textField}
           />
-          <Button className={style.button}>Sign up</Button>
+          <Button
+            className={style.button}
+            to={
+              userType == "instructor" ? "/ProfDashboard" : "/StudentDashboard"
+            }
+            component={Link}
+          >
+            Sign up
+          </Button>
         </Box>
       </Grid>
     </div>
