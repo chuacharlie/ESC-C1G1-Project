@@ -116,7 +116,7 @@ const LoginPage = ({onClickSignUp}) => {
                 className={style.button}
                 to={"/SignUpPage"}
                 component={Link}
-                // onClick = {() => onClickSignUp("instructor")}
+                onClick = {() => onClickSignUp("instructor")}
               >
                 Sign Up as Instructor
               </Button>
@@ -159,7 +159,7 @@ const LoginPage = ({onClickSignUp}) => {
                 className={style.button}
                 to={"/SignUpPage"}
                 component={Link}
-                // onClick = {() => onClickSignUp("student")}
+                onClick = {() => onClickSignUp("student")}
               >
                 Sign Up as Student
               </Button>
@@ -167,8 +167,6 @@ const LoginPage = ({onClickSignUp}) => {
           </Paper>
         </Grid>
       </Grid>
-      {/* <Link to="/ProfDashboard"> To ProfDashboard </Link> */}
-      {/* <Link to="/StudentDashboard"> To StudentDashboard</Link> */}
     </div>
   );
 };

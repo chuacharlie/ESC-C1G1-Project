@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUpPage = ({ userType }) => {
   const style = useStyles();
-  console.log(userType);
+  // console.log(userType);
   return (
     <div>
       <h2 style={{ textAlign: "center" }}>Join us</h2>
@@ -49,7 +49,9 @@ const SignUpPage = ({ userType }) => {
           className={style.box}
         >
           <Box width="100%" textAlign="center" py={4}>
-            {userType === "instructor" ? "Instructor Sign Up" : "Sign Up"}
+            {userType === "instructor"
+              ? "Instructor Sign Up"
+              : "Student Sign Up"}
           </Box>
           <TextField
             id="Name"
