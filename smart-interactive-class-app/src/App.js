@@ -52,10 +52,15 @@ firebase.initializeApp({
 //-------------------------------------------------
 function App() {
   const [userType, setUserType] = useState("");
+  const [classData, setClassData] = useState({});
 
   const onClickSignUp = (userType) => {
     setUserType(userType);
     console.log(userType);
+  };
+
+  const onClickClass = (classData) => {
+    setClassData(classData);
   };
 
   return (
@@ -67,8 +72,14 @@ function App() {
           render={() => <>{<LoginPage onClickSignUp={onClickSignUp} />}</>}
         />
         <Route path="/StudentDashboard" component={StudentDashboard} />
-        <Route path="/ProfDashboard" component={ProfDashboard} />
-        {/* <Route path="/ProfDashboard/viewClass" component={ProfViewClass} /> */}
+        <Route
+          path="/ProfDashboard"
+          render={() => <>{<ProfDashboard onClickClass={onClickClass} />}</>}
+        />
+        <Route
+          path={`/ProfViewClass:${classData.classCode}`}
+          render={() => <>{<ProfViewClass classData={classData} />}</>}
+        />
         <Route path="/StudentSlidesURL" component={StudentSlides} />
         <Route path="/PostLectureURL" component={PostLectureRating} />
         <Route

@@ -80,7 +80,7 @@ const SignUpPage = ({ userType }) => {
           <Button
             className={style.button}
             to={
-              userType == "instructor" ? "/ProfDashboard" : "/StudentDashboard"
+              userType === "instructor" ? "/ProfDashboard" : "/StudentDashboard"
             }
             component={Link}
           >

@@ -1,15 +1,8 @@
-import ListTile from "../Components/ListTile";
+import ListTile from "../Components/ClassListTile";
 import ProfAddClass from "../Components/ProfAddClass";
-import ProfViewClass from "../Pages/ProfViewClass";
 
 import { useState } from "react";
-import {
-  Switch,
-  Link,
-  BrowserRouter as Router,
-  Route,
-  useRouteMatch,
-} from "react-router-dom";
+
 import { Grid, Button, List } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
@@ -40,14 +33,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ProfDashboard() {
-  let match = useRouteMatch();
-
+const ProfDashboard = ({onClickClass}) => {
   const style = useStyles();
   const [classes, setClasses] = useState([
     { classTitle: "Dummy Class 101", classCode: 1234 },
   ]);
-  const [classData, setClassData] = useState({});
 
   const onAdd = (classTitle) => {
     const classCode = Math.floor(Math.random() * 10000) + 1;
@@ -55,9 +45,6 @@ function ProfDashboard() {
     setClasses([...classes, newClass]);
   };
 
-  const onClick = (classData) => {
-    setClassData(classData);
-  };
 
   return (
     <div className={style.page}>
@@ -70,7 +57,7 @@ function ProfDashboard() {
         {classes.length > 0 ? (
           <>
             {classes.map((c) => (
-              <ListTile classData={c} onClick={onClick} />
+              <ListTile classData={c} onClick={onClickClass} />
             ))}
           </>
         ) : (

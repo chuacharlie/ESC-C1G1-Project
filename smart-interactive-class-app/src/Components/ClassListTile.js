@@ -19,7 +19,7 @@ const ListTile = ({ classData, onClick }) => {
     <ListItem
       button
       className={style.ListItem}
-      to="/ProfDashboard/viewClass"
+      to={`/ProfViewClass:${classData.classCode}`}
       component={Link}
       onClick={onClick(classData)}
     >
