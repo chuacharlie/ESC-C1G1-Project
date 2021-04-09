@@ -37,13 +37,16 @@ const useStyles = makeStyles((theme) => ({
     color: "#f06292",
   },
   indicator: {
-    backgroundColor: "lightblue",
+    backgroundColor: "#f06292",
   },
 }));
 
 const ProfViewClass = ({ classData }) => {
   const style = useStyles();
   const [selectedTab, setSelectedTab] = useState(0);
+  const [students, setStudents] = useState({
+    studentList: { 1003456: { name: "Xiao Ming", scores: 60 } },
+  });
 
   const handleChange = (e, newSelectedTab) => {
     setSelectedTab(newSelectedTab);
@@ -73,8 +76,8 @@ const ProfViewClass = ({ classData }) => {
         <Tab label="Students" />
         <Tab label="Feedback" />
       </Tabs>
-      {selectedTab === 0 && <ListOfStudents />}
-      {selectedTab === 1 && <Feedback />}
+      {selectedTab === 0 && <ListOfStudents classData={classData} />}
+      {selectedTab === 1 && <Feedback classData={classData} />}
     </div>
   );
 };

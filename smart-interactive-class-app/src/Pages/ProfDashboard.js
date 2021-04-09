@@ -5,7 +5,6 @@ import { useState } from "react";
 
 import { Grid, Button, List } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import AddIcon from "@material-ui/icons/Add";
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -36,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 const ProfDashboard = ({onClickClass}) => {
   const style = useStyles();
   const [classes, setClasses] = useState([
-    { classTitle: "Dummy Class 101", classCode: 1234 },
+    { "classTitle": "Dummy Class 101", "classCode": 1234 },
   ]);
 
   const onAdd = (classTitle) => {
