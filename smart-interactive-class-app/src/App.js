@@ -24,17 +24,32 @@ import StudentSlides from "./Pages/StudentSlides";
 import PostLectureRating from "./Pages/PostLectureRating";
 import SignUpPage from "./Pages/SignUpPage";
 
-firebase.initializeApp({
-    apiKey: "AIzaSyB8QiVeO7MOXOOT3NlMx_jcSPIqwhI10fE",
-    authDomain: "escproject-fdba0.firebaseapp.com",
-    databaseURL: "https://escproject-fdba0-default-rtdb.firebaseio.com",
-    projectId: "escproject-fdba0",
-    storageBucket: "escproject-fdba0.appspot.com",
-    messagingSenderId: "639100449155",
-    appId: "1:639100449155:web:d1ddbdfdf2d148b3db46b6",
-    measurementId: "G-VL46L5KBHS"
-}
-)
+// firebase.initializeApp({
+//     apiKey: "AIzaSyB8QiVeO7MOXOOT3NlMx_jcSPIqwhI10fE",
+//     authDomain: "escproject-fdba0.firebaseapp.com",
+//     databaseURL: "https://escproject-fdba0-default-rtdb.firebaseio.com",
+//     projectId: "escproject-fdba0",
+//     storageBucket: "escproject-fdba0.appspot.com",
+//     messagingSenderId: "639100449155",
+//     appId: "1:639100449155:web:d1ddbdfdf2d148b3db46b6",
+//     measurementId: "G-VL46L5KBHS"
+// }
+// )
+
+//might delete! 9 APR XY 
+const firebaseConfig = {
+  apiKey: "AIzaSyB8QiVeO7MOXOOT3NlMx_jcSPIqwhI10fE",
+  authDomain: "escproject-fdba0.firebaseapp.com",
+  databaseURL: "https://escproject-fdba0-default-rtdb.firebaseio.com",
+  projectId: "escproject-fdba0",
+  storageBucket: "escproject-fdba0.appspot.com",
+  messagingSenderId: "639100449155",
+  appId: "1:639100449155:web:d1ddbdfdf2d148b3db46b6",
+  measurementId: "G-VL46L5KBHS"
+};
+//initialize firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
 
 // const auth=firebase.auth();
