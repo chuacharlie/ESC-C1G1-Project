@@ -1,6 +1,5 @@
 import ListOfStudents from "./ListOfStudents";
 import Feedback from "./Feedback";
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -37,32 +36,15 @@ const useStyles = makeStyles((theme) => ({
     color: "#f06292",
   },
   indicator: {
-    backgroundColor: "#f06292",
+    backgroundColor: "lightblue",
   },
 }));
 
-const ProfViewClass = ({ classData }) => {
+const StudentViewClass = ({ classData }) => {
   const style = useStyles();
   const [selectedTab, setSelectedTab] = useState(0);
-  const [students, setStudents] = useState([]);
-  const [feedbacks, setFeedbacks] = useState([]);
-
-  const getStudents = () => {
-    setStudents();
-  };
-
-  const getFeedbacks = () => {
-    setFeedbacks();
-  };
 
   const handleChange = (e, newSelectedTab) => {
-    // if (newSelectedTab == 0 && students.length == 0) {
-    //   getStudents();
-    // }
-
-    // if (newSelectedTab == 1 && feedbacks.length == 0) {
-    //   getFeedbacks();
-    // }
     setSelectedTab(newSelectedTab);
   };
 
@@ -71,7 +53,7 @@ const ProfViewClass = ({ classData }) => {
       <header className={style.header}>
         <IconButton
           className={style.button}
-          to={"/ProfDashboard"}
+          to={"/StudentDashboard"}
           component={Link}
         >
           <ArrowBackIosIcon />
@@ -90,10 +72,10 @@ const ProfViewClass = ({ classData }) => {
         <Tab label="Students" />
         <Tab label="Feedback" />
       </Tabs>
-      {selectedTab === 0 && <ListOfStudents classData={classData} />}
-      {selectedTab === 1 && <Feedback classData={classData} />}
+      {selectedTab === 0 && <ListOfStudents />}
+      {selectedTab === 1 && <Feedback />}
     </div>
   );
 };
 
-export default ProfViewClass;
+export default StudentViewClass;

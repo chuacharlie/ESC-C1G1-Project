@@ -24,6 +24,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 node_modules
+smart-interactive-class-app/node_modules/.cache/.eslintcache
 smart-interactive-class-app/node_modules/es-abstract/package.json
 smart-interactive-class-app/node_modules/es-abstract/operations/2019.js
 smart-interactive-class-app/node_modules/es-abstract/operations/2020.js
@@ -5024,3 +5025,4 @@ smart-interactive-class-app/node_modules/jest-diff/build/cleanupSemantic.d.ts
 smart-interactive-class-app/node_modules/jest-diff/build/cleanupSemantic.js
 smart-interactive-class-app/node_modules/jest-diff/build/constants.d.ts
 smart-interactive-class-app/node_modules/jest-diff/build/constants.js
+smart-interactive-class-app/node_modules/.cache/.eslintcache
