@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Box, Grid, Paper, Button, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -35,8 +36,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignUpPage = ({ userType }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const style = useStyles();
   // console.log(userType);
+
+
+
   return (
     <div>
       <h2 style={{ textAlign: "center" }}>Join us</h2>
@@ -58,18 +65,21 @@ const SignUpPage = ({ userType }) => {
             variant="outlined"
             placeholder="Name"
             className={style.textField}
+            onChange={(e) => setName(e.target.value)}
           />
           <TextField
             id="email"
             variant="outlined"
             placeholder="Email"
             className={style.textField}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             id="password"
             variant="outlined"
             placeholder="Password"
             className={style.textField}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <TextField
             id="password"
