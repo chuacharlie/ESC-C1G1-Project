@@ -44,11 +44,25 @@ const useStyles = makeStyles((theme) => ({
 const ProfViewClass = ({ classData }) => {
   const style = useStyles();
   const [selectedTab, setSelectedTab] = useState(0);
-  const [students, setStudents] = useState({
-    studentList: { 1003456: { name: "Xiao Ming", scores: 60 } },
-  });
+  const [students, setStudents] = useState([]);
+  const [feedbacks, setFeedbacks] = useState([]);
+
+  const getStudents = () => {
+    setStudents();
+  };
+
+  const getFeedbacks = () => {
+    setFeedbacks();
+  };
 
   const handleChange = (e, newSelectedTab) => {
+    // if (newSelectedTab == 0 && students.length == 0) {
+    //   getStudents();
+    // }
+
+    // if (newSelectedTab == 1 && feedbacks.length == 0) {
+    //   getFeedbacks();
+    // }
     setSelectedTab(newSelectedTab);
   };
 

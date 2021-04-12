@@ -60,10 +60,11 @@ const rows = [
 
 const ListOfStudents = ({ classData }) => {
   const style = useStyles();
-  const [students, setStudents] = useState({
-    studentList: { 1003456: { name: "Xiao Ming", scores: 60 } },
-  });
+  const [students, setStudents] = useState([]);
 
+  const getStudents = () => { }
+
+  console.log(rows);
   console.log(students);
   return (
     <Table stickyHeader className={style.table}>

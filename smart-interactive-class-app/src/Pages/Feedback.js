@@ -59,11 +59,12 @@ const rows = [
 
 const Feedback = ({ classData }) => {
   const style = useStyles();
-  const [students, setStudents] = useState({
-    studentList: { 1003456: { name: "Xiao Ming", scores: 60 } },
-  });
+  const [feedbacks, setFeedbacks] = useState([]);
 
-  console.log(students);
+  const getFeedbacks = () => {
+
+  }
+
   return (
     <Table stickyHeader className={style.table}>
       <TableHead>
