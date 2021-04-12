@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Box, Grid, Paper, Button, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { spacing } from "@material-ui/system";
+import SignUp from '../FirebaseAPI';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +44,9 @@ const SignUpPage = ({ userType }) => {
   const style = useStyles();
   // console.log(userType);
 
+  const onClick = () =>{
+    SignUp(name, email, password, userType);
+  };
 
 
   return (
@@ -93,6 +98,7 @@ const SignUpPage = ({ userType }) => {
               userType === "instructor" ? "/ProfDashboard" : "/StudentDashboard"
             }
             component={Link}
+            onClick = {onClick()}
           >
             Sign up
           </Button>
