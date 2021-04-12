@@ -71,7 +71,11 @@ function App() {
           path="/"
           render={() => <>{<LoginPage onClickSignUp={onClickSignUp} />}</>}
         />
-        <Route path="/StudentDashboard" component={StudentDashboard} />
+        <Route path="/StudentDashboard" 
+        render={() => <>{<StudentDashboard onClickClass={onClickClass} />}</>}
+        />
+
+
         <Route
           path="/ProfDashboard"
           render={() => <>{<ProfDashboard onClickClass={onClickClass} />}</>}
@@ -80,6 +84,11 @@ function App() {
           path={`/ProfViewClass:${classData.classCode}`}
           render={() => <>{<ProfViewClass classData={classData} />}</>}
         />
+        <Route
+          path={`/StudentViewClass:${classData.classCode}`}
+          render={() => <>{<ProfViewClass classData={classData} />}</>}
+        />
+
         <Route path="/StudentSlidesURL" component={StudentSlides} />
         <Route path="/PostLectureURL" component={PostLectureRating} />
         <Route
