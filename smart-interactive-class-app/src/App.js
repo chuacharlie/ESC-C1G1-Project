@@ -8,49 +8,24 @@ import {
 } from "react-router-dom";
 import LoginPage from "./Pages/LoginPage";
 //import notfound from "./Pages/notfound";
-import ProfDashboard from "./Pages/ProfDashboard"
-import React, {Component} from "react";
-import StudentDashboard from "./Pages/StudentDashboard"
+import ProfDashboard from "./Pages/ProfDashboard";
+import React, { useState } from "react";
+import StudentDashboard from "./Pages/StudentDashboard";
+import ProfViewClass from "./Pages/ProfViewClass";
 //xy
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
-import {useAuthState} from 'react-firebase-hooks/auth';
-import {useCollectionData} from 'react-firebase-hooks/firestore';
+import firebase from "firebase/app";
+import "firebase/firestore";
+import "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
-import ProfPresentation from "./Pages/ProfPresentation";
 import StudentSlides from "./Pages/StudentSlides";
 import PostLectureRating from "./Pages/PostLectureRating";
 import SignUpPage from "./Pages/SignUpPage";
 
-// firebase.initializeApp({
-//     apiKey: "AIzaSyB8QiVeO7MOXOOT3NlMx_jcSPIqwhI10fE",
-//     authDomain: "escproject-fdba0.firebaseapp.com",
-//     databaseURL: "https://escproject-fdba0-default-rtdb.firebaseio.com",
-//     projectId: "escproject-fdba0",
-//     storageBucket: "escproject-fdba0.appspot.com",
-//     messagingSenderId: "639100449155",
-//     appId: "1:639100449155:web:d1ddbdfdf2d148b3db46b6",
-//     measurementId: "G-VL46L5KBHS"
-// }
-// )
 
-//might delete! 9 APR XY 
-const firebaseConfig = {
-  apiKey: "AIzaSyB8QiVeO7MOXOOT3NlMx_jcSPIqwhI10fE",
-  authDomain: "escproject-fdba0.firebaseapp.com",
-  databaseURL: "https://escproject-fdba0-default-rtdb.firebaseio.com",
-  projectId: "escproject-fdba0",
-  storageBucket: "escproject-fdba0.appspot.com",
-  messagingSenderId: "639100449155",
-  appId: "1:639100449155:web:d1ddbdfdf2d148b3db46b6",
-  measurementId: "G-VL46L5KBHS"
-};
-//initialize firebase
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
-
+// write firebase API here 12Apr xy
 
 // const auth=firebase.auth();
 // const firestore=firebase.firestore();
@@ -59,7 +34,7 @@ firebase.analytics();
 
 // function SingIn(){
 //   const signInWithEmail=()=>{
-//     //const provider = new firebase.auth.G
+//     //const provider = new firebase.auth.
 //   }
 //   return(
 //     <button onClick={signInWithEmail}>Sign in with Email</button>
@@ -67,27 +42,50 @@ firebase.analytics();
 // }
 
 //-------------------------------------------------
-class App extends Component{
-  render(){
-    return (
+function App() {
+  //[variable name, funtion name]
+  const [userType, setUserType] = useState("");
+  const [classData, setClassData] = useState({});
+
+  // property 
+  const onClickSignUp = (userType) => {
+    //set method 
+    setUserType(userType);
+    console.log(userType);
+  };
+
+  const onClickClass = (classData) => {
+    setClassData(classData);
+  };
+
+  return (
     <Router>
       <Switch>
-          <Route exact path = "/" component ={LoginPage}/>
-          <Route exact path="/StudentDashboard" component={StudentDashboard} />
-          <Route exact path="/ProfDashboard" component={ProfDashboard} />
-          <Route
-            exact
-            path="/ProfPresentationURL"
-            component={ProfPresentation}
-          />
-          <Route exact path="/StudentSlidesURL" component={StudentSlides} />
-          <Route exact path="/PostLectureURL" component={PostLectureRating} />
-          <Route exact path="/SignUpPage" component={SignUpPage} />
-          <Redirect to="/404" />
+        <Route
+          exact
+          path="/"
+          render={() => <>{<LoginPage onClickSignUp={onClickSignUp} />}</>}
+        />
+        <Route path="/StudentDashboard" component={StudentDashboard} />
+        <Route
+          path="/ProfDashboard"
+          render={() => <>{<ProfDashboard onClickClass={onClickClass} />}</>}
+        />
+        <Route
+          path={`/ProfViewClass:${classData.classCode}`}
+          render={() => <>{<ProfViewClass classData={classData} />}</>}
+        />
+        <Route path="/StudentSlidesURL" component={StudentSlides} />
+        <Route path="/PostLectureURL" component={PostLectureRating} />
+        <Route
+          exact
+          path="/SignUpPage"
+          render={() => <>{<SignUpPage userType={userType} />}</>}
+        />
+        <Redirect to="/404" />
       </Switch>
     </Router>
-    );
-  }
+  );
 }
 
 export default App;

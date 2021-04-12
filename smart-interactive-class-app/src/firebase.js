@@ -13,5 +13,6 @@ const app =firebase.initializeApp = ({
   })
 
   //authentication instances
-  export const auth = app.auth()
-  export default app
+  export const auth = app.auth();
+  //export default app;
+
