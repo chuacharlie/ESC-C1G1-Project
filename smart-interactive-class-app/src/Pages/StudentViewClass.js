@@ -1,3 +1,4 @@
+import Iframe from "react-iframe";
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -16,13 +17,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import { spacing } from "@material-ui/system";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import HomeIcon from "@material-ui/icons/Home";
-import Divider from '@material-ui/core/Divider';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-
+import Divider from "@material-ui/core/Divider";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import ListSubheader from "@material-ui/core/ListSubheader";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -46,10 +46,15 @@ const useStyles = makeStyles((theme) => ({
   },
 
   divider: {
-    margin: theme.spacing(2, 0),}
+    margin: theme.spacing(2, 0),
+  },
 }));
 
 const StudentViewClass = ({ classData2 }) => {
+  const [iFrameSrc, setiFrameScr] = useState(
+    "https://psg3-broadcast.officeapps.live.com/m/Broadcast.aspx?Fi=34ede3372ac476b2%5Fa46a708e%2D0bd6%2D4219%2D9649%2D8ca2e79fa5ce%2Dasync%2Epptx"
+  );
+
   const style = useStyles();
   const [selectedTab, setSelectedTab] = useState(0);
 
@@ -69,42 +74,45 @@ const StudentViewClass = ({ classData2 }) => {
           <HomeIcon />
         </IconButton>
         <h1>
-          {//classData2.classTitle + "test" + " (Class code: " + classData2.classCode + ")"}
-}
+          {
+            //classData2.classTitle + "test" + " (Class code: " + classData2.classCode + ")"}
+          }
           {"Dummy Class 101 (Class code: 1234) )"}
         </h1>
       </header>
+      {iFrameSrc && (
+        <div>
+          <Iframe src={iFrameSrc} width="100%" height="650px" />
+        </div>
+      )}
       <Box width="100%" height={150} textAlign="center" pt={5}>
         <h1>Student's actions below</h1>
       </Box>
       <Box width="100%" textAlign="center" py={4}>
-                <h1>Type Your Question</h1>
-                <TextField
-                id="student-ask-question"
-                variant="outlined"
-                placeholder="Enter your question here"
-                className={style.textField}
-              />
-              <Button
-                className={style.button}
-                to={"/PostLectureURL"}
-                component={Link}
-              >
-                Submit question
-              </Button>
+        <h1>Type Your Question</h1>
+        <TextField
+          id="student-ask-question"
+          variant="outlined"
+          placeholder="Enter your question here"
+          className={style.textField}
+        />
+        <Button
+          className={style.button}
+          to={"/PostLectureURL"}
+          component={Link}
+        >
+          Submit question
+        </Button>
 
-              <Button
-                className={style.button}
-                to={"/PostLectureURL"}
-                component={Link}
-              >
-                Go to Post Lecture Review
-              </Button>
-              </Box>
-    
-
+        <Button
+          className={style.button}
+          to={"/PostLectureURL"}
+          component={Link}
+        >
+          Go to Post Lecture Review
+        </Button>
+      </Box>
     </div>
-    
   );
 };
 

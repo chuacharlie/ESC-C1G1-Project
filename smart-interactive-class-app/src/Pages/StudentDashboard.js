@@ -1,9 +1,13 @@
 import ListTile from "../Components/ClassListTile2";
 import StudentAddClass from "../Components/StudentAddClass";
+
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 import { Grid, Button, List } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -17,12 +21,10 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
   },
   button: {
-    backgroundColor: "#f06292",
+    backgroundColor: "white",
     borderRadius: 20,
-    width: "16%",
-    height: "36px",
-    margin: "0 16px 0 0",
-    color: "white",
+    margin: "0 16px 0 30px",
+    color: "#f06292",
   },
   header: {
     display: "flex",
@@ -49,6 +51,14 @@ const StudentDashboard = ({onClickClass2}) => {
       <header className={style.header}>
         <StudentAddClass onAdd={onAdd} />
         <h1>Student Dashboard</h1>
+        <Button
+          className={style.button}
+          endIcon={<ExitToAppIcon />}
+          to={"/"}
+          component={Link}
+        >
+          Log Out
+        </Button>
       </header>
 
       <List>

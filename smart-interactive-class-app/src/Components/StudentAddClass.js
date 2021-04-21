@@ -70,14 +70,14 @@ const StudentAddClass = ({onAdd}) => {
               <Button
                 className={style.popupButton}
                 style={{ backgroundColor: "lightblue" }}
-                onClick2 = {() => onAdd(classTitle2)}
+                onClick = {() => onAdd(classTitle2)}
               >
                 Join
               </Button>
               <Button
                 className={style.popupButton}
                 style={{ backgroundColor: "#f06292", color: "white" }}
-                onClick2={() => {
+                onClick={() => {
                   close();
                 }}
               >
