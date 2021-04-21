@@ -9,6 +9,7 @@ import{auth,createUserProfileDocument} from '../..firebase/firebase.utils';
 class SignUp extends React.Component{
     constructor(){
         super();
+
         this.state={
             displayName:'',
             email:'',

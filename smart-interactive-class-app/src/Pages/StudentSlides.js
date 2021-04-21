@@ -66,81 +66,6 @@ const StudentSlides = () => {
         alignItems="flex-end"
         spacing={10}
       >
-       {/* <Grid key={0} item>
-          <Paper className={style.paper}>
-            <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              className={style.box}
-            >
-              <Box width="100%" textAlign="center" py={4}>
-                <h1>Slides below</h1>
-              </Box>
-              <TextField
-                id="instructor-email"
-                variant="outlined"
-                placeholder="//SLIDE"
-                className={style.textField}
-              />
-              <TextField
-                id="instructor-password"
-                variant="outlined"
-                placeholder="Password"
-                className={style.textField}
-              />
-              <Button
-                className={style.button}
-                to={"/PostLectureURL"}
-                component={Link}
-              >
-                Go to post lecture
-              </Button>
-            </Box>
-          </Paper>
-        </Grid> */}
-
-               {/* <Grid key={0} item>
-          <Paper className={style.paper}>
-            <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              className={style.box}
-            >
-              <Box width="100%" textAlign="center" py={4}>
-                <h1>Slides below</h1>
-              </Box>
-              <TextField
-                id="instructor-email"
-                variant="outlined"
-                placeholder="//SLIDE"
-                className={style.textField}
-              />
-              <TextField
-                id="instructor-password"
-                variant="outlined"
-                placeholder="Password"
-                className={style.textField}
-              />
-              <Button
-                className={style.button}
-                to={"/PostLectureURL"}
-                component={Link}
-              >
-                Go to post lecture
-              </Button>
-            </Box>
-          </Paper>
-        </Grid> */}
-
-       
-      
-        
-
-
         <Grid>
           <Box               
               display="flex"
@@ -152,7 +77,7 @@ const StudentSlides = () => {
 
           <Paper className={style.paper}>
 
-          <Box width="100%" textAlign="center" py={4}>
+          <Box width="100%" backgroundColor  textAlign="center" py={4}>
                 <h1>Type Your Question</h1>
                 <TextField
                 id="student-ask-question"

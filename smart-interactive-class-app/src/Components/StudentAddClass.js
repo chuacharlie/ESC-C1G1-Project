@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const StudentAddClass = ({onAdd}) => {
-  const [classTitle, setClassTitle] = useState("");
+  const [classTitle2, setClassTitle] = useState("");
   const style = useStyles();
 
   return (
@@ -58,7 +58,7 @@ const StudentAddClass = ({onAdd}) => {
             alignItems="center"
             className={style.box}
           >
-            <h3 style={{ textAlign: "center", color: "#f06292" }}>Join Class line61</h3>
+            <h3 style={{ textAlign: "center", color: "#f06292" }}>Join Class line</h3>
             <TextField
               id="class-title"
               variant="outlined"
@@ -70,14 +70,14 @@ const StudentAddClass = ({onAdd}) => {
               <Button
                 className={style.popupButton}
                 style={{ backgroundColor: "lightblue" }}
-                onClick = {() => onAdd(classTitle)}
+                onClick2 = {() => onAdd(classTitle2)}
               >
                 Join
               </Button>
               <Button
                 className={style.popupButton}
                 style={{ backgroundColor: "#f06292", color: "white" }}
-                onClick={() => {
+                onClick2={() => {
                   close();
                 }}
               >
