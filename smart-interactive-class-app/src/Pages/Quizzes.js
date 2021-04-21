@@ -2,6 +2,10 @@ import React from "react";
 import { useState } from "react";
 
 import {
+  Box,
+  Collapse,
+  IconButton,
+  Typography,
   Paper,
   Button,
   TextField,
@@ -28,6 +32,8 @@ import {
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import SendIcon from "@material-ui/icons/Send";
 import AddIcon from "@material-ui/icons/Add";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -49,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#f06292",
     borderRadius: 20,
     width: "12%",
-    margin: "16px 0px 0 0",
+    margin: "16px 0 16px 0",
     color: "white",
     padding: "auto",
   },
@@ -76,8 +82,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function createData(quizQn, quizType, quizDetails, dateTime) {
+  return {
+    quizQn,
+    quizType,
+    quizDetails,
+    dateTime,
+  };
+}
+
 const Quizzes = ({ classData }) => {
-  const [quizzes, setQuizzes] = useState([]);
+  const [rows, setRows] = useState([
+    createData("Cohort Ex 1", "Open Ended", {}, "09/04/2021, 12.51 PM"),
+  ]);
   const [qn, setQn] = useState("");
   const [qnType, setQnType] = useState("mcq");
   const [numOfOptions, setNumOfOpt] = useState("");
@@ -93,26 +110,27 @@ const Quizzes = ({ classData }) => {
   };
 
   const onSendNewQuiz = () => {
+    var dateTime = new Date().toLocaleString();
     if (
       qn !== "" &&
+      qnType === "mcq" &&
       numOfOptions !== "" &&
-      correctAns !== "" &&
-      qnType === "mcq"
+      correctAns !== ""
     ) {
-      const newQuizDetails = { qn, qnType, numOfOptions, correctAns };
-      setQuizzes([...quizzes, newQuizDetails]);
+      const newQuiz = createData(
+        qn,
+        "MCQ",
+        { numOfOptions, correctAns },
+        dateTime
+      );
+      setRows([newQuiz, ...rows]);
       handleClose();
-    } else if (
-      qn !== "" &&
-      numOfOptions !== "" &&
-      correctAns !== "" &&
-      qnType === "open"
-    ) {
-      const newQuizDetails = { qn, qnType };
-      setQuizzes([...quizzes, newQuizDetails]);
+    } else if (qn !== "" && qnType === "open") {
+      const newQuiz = createData(qn, "Open Ended", {}, dateTime);
+      setRows([newQuiz, ...rows]);
       handleClose();
     } else {
-      alert("Please finish setting the quiz's question!");
+      alert("Please finish setting the quiz!");
     }
   };
 
@@ -140,11 +158,79 @@ const Quizzes = ({ classData }) => {
         setCorrectAns,
         onSendNewQuiz
       )}
+      <Table stickyHeader className={style.table}>
+        <TableHead>
+          <TableRow>
+            <StyledTableCell />
+            <StyledTableCell align="left">Question</StyledTableCell>
+            <StyledTableCell align="left">Type</StyledTableCell>
+            <StyledTableCell align="right">Posted on</StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <Row row={row} style={style} />
+          ))}
+        </TableBody>
+      </Table>
     </div>
   );
 };
 
 export default Quizzes;
+
+function Row(props) {
+  const { row } = props;
+  const [open, setOpen] = React.useState(false);
+  console.log(row);
+  return (
+    <React.Fragment>
+      <TableRow>
+        <TableCell>
+          <IconButton size="small" onClick={() => setOpen(!open)}>
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
+        <TableCell align="left">{row.quizQn}</TableCell>
+        <TableCell align="left">{row.quizType}</TableCell>
+        <TableCell align="right">{row.dateTime}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box margin={1}>
+              <Typography variant="subtitle1" gutterBottom component="div">
+                Responses
+              </Typography>
+              <Table stickyHeader size="small" style={{ margin: "16px 0 0 0" }}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Answers</TableCell>
+                    <TableCell>Student</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {/* {row.history.map((historyRow) => (
+                    <TableRow key={historyRow.date}>
+                      <TableCell component="th" scope="row">
+                        {historyRow.date}
+                      </TableCell>
+                      <TableCell>{historyRow.customerId}</TableCell>
+                      <TableCell align="right">{historyRow.amount}</TableCell>
+                      <TableCell align="right">
+                        {Math.round(historyRow.amount * row.price * 100) / 100}
+                      </TableCell>
+                    </TableRow>
+                  ))} */}
+                </TableBody>
+              </Table>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+    </React.Fragment>
+  );
+}
 
 function NewQuizDialog(
   open,

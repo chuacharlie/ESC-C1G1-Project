@@ -53,8 +53,8 @@ function createData(feedback, name, dateTime) {
 }
 
 const rows = [
-  createData("Great lecture", "Lee Xiao Ming", "09/04/2021, 12.51 PM"),
-  createData("How can we expand on cohort exercise 2", "Tan Da Ming", "09/04/2021, 12.52PM"),
+  createData("Great lecture", "Lee Xiao Ming", new Date().toLocaleString()),
+  createData("How can we expand on cohort exercise 2", "Tan Da Ming", new Date().toLocaleString()),
 ];
 
 const Feedback = ({ classData }) => {
@@ -85,7 +85,7 @@ const Feedback = ({ classData }) => {
           </TableRow>
         ))}
       </TableBody>
-    </Table>
+    </Table>  
   );
 };
 

@@ -41,7 +41,7 @@ const ProfDashboard = ({ onClickClass }) => {
   const onAdd = (classTitle) => {
     const classCode = Math.floor(Math.random() * 10000) + 1;
     const newClass = { classCode, classTitle };
-    setClasses([...classes, newClass]);
+    setClasses([newClass, ...classes]);
   };
 
   return (
