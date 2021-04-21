@@ -1,4 +1,4 @@
-import ListTile from "../Components/ClassListTile";
+import ListTile from "../Components/ClassListTile2";
 import StudentAddClass from "../Components/StudentAddClass";
 import { useState } from "react";
 import { Grid, Button, List } from "@material-ui/core";
@@ -31,15 +31,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const StudentDashboard = ({onClickClass}) => {
+const StudentDashboard = ({onClickClass2}) => {
   const style = useStyles();
   const [classes, setClasses] = useState([
-    { classTitle: "Dummy Class 101", classCode: 1234 },
+    { classTitle2: "Dummy Class 101", classCode: 1234 },
   ]);
 
-  const onAdd = (classTitle) => {
+  const onAdd = (classTitle2) => {
     const classCode = Math.floor(Math.random() * 10000) + 1;
-    const newClass = { classCode, classTitle };
+    const newClass = { classCode, classTitle2 };
     setClasses([...classes, newClass]);
   };
 
@@ -55,7 +55,7 @@ const StudentDashboard = ({onClickClass}) => {
         {classes.length > 0 ? (
           <>
             {classes.map((c) => (
-              <ListTile classData={c} onClick={onClickClass} />
+              <ListTile classData2={c} onClick2={onClickClass2} />
             ))}
           </>
         ) : (
