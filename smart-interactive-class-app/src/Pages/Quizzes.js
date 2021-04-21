@@ -1,5 +1,16 @@
 import React from "react";
 import { useState } from "react";
+import PropTypes from "prop-types";
+
+import {
+  Chart,
+  BarSeries,
+  Title,
+  ArgumentAxis,
+  ValueAxis,
+  Tooltip,
+} from "@devexpress/dx-react-chart-material-ui";
+import { EventTracker } from "@devexpress/dx-react-chart";
 
 import {
   Box,
@@ -82,15 +93,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function createData(quizQn, quizType, quizDetails, dateTime) {
-  return {
-    quizQn,
-    quizType,
-    quizDetails,
-    dateTime,
-  };
-}
-
 const Quizzes = ({ classData }) => {
   const [rows, setRows] = useState([
     createData("Cohort Ex 1", "Open Ended", {}, "09/04/2021, 12.51 PM"),
@@ -163,13 +165,13 @@ const Quizzes = ({ classData }) => {
           <TableRow>
             <StyledTableCell />
             <StyledTableCell align="left">Question</StyledTableCell>
-            <StyledTableCell align="left">Type</StyledTableCell>
+            <StyledTableCell align="right">Type</StyledTableCell>
             <StyledTableCell align="right">Posted on</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <Row row={row} style={style} />
+            <Row row={row} />
           ))}
         </TableBody>
       </Table>
@@ -178,6 +180,31 @@ const Quizzes = ({ classData }) => {
 };
 
 export default Quizzes;
+
+function createData(quizQn, quizType, quizDetails, dateTime) {
+  return {
+    quizQn,
+    quizType,
+    quizDetails,
+    dateTime,
+    responses: [
+      { answer: "white box test", student: "Lee Xiao Ming" },
+      { answer: "black box test", student: "Tan Da Ming" },
+    ],
+  };
+}
+
+Row.propTypes = {
+  row: PropTypes.shape({
+    quizQn: PropTypes.string,
+    quizType: PropTypes.string,
+    quizDetails: PropTypes.shape({}),
+    dateTime: PropTypes.string,
+    responses: PropTypes.arrayOf(
+      PropTypes.shape({ answer: PropTypes.string, student: PropTypes.string })
+    ),
+  }),
+};
 
 function Row(props) {
   const { row } = props;
@@ -192,43 +219,69 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell align="left">{row.quizQn}</TableCell>
-        <TableCell align="left">{row.quizType}</TableCell>
+        <TableCell align="right">{row.quizType}</TableCell>
         <TableCell align="right">{row.dateTime}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
-              <Typography variant="subtitle1" gutterBottom component="div">
-                Responses
+              <Typography variant="h6" gutterBottom component="div">
+                Responses:
               </Typography>
-              <Table stickyHeader size="small" style={{ margin: "16px 0 0 0" }}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Answers</TableCell>
-                    <TableCell>Student</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {/* {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.date}>
-                      <TableCell component="th" scope="row">
-                        {historyRow.date}
-                      </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
-                      <TableCell align="right">
-                        {Math.round(historyRow.amount * row.price * 100) / 100}
-                      </TableCell>
+              {row.quizType === "MCQ" && (
+                <>
+                  <div>{"Correct Answer: " + row.quizDetails.correctAns}</div>
+                  <MCQResponsesChart />
+                </>
+              )}
+              {row.quizType === "Open Ended" && (
+                <Table
+                  stickyHeader
+                  size="small"
+                  style={{ margin: "16px 0 0 0" }}
+                >
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Answers</TableCell>
+                      <TableCell>Student</TableCell>
                     </TableRow>
-                  ))} */}
-                </TableBody>
-              </Table>
+                  </TableHead>
+                  <TableBody>
+                    {row.responses.map((responseRow) => (
+                      <TableRow key={responseRow.student}>
+                        <TableCell>{responseRow.answer}</TableCell>
+                        <TableCell>{responseRow.student}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              )}
             </Box>
           </Collapse>
         </TableCell>
       </TableRow>
     </React.Fragment>
+  );
+}
+
+function MCQResponsesChart() {
+  const [data, setData] = useState([
+    { option: "A", value: 4.44 },
+    { option: "B", value: 5.31 },
+    { option: "C", value: 6.127 },
+    { option: "D", value: 6.0 },
+  ]);
+
+  return (
+    <div style={{ width: "50%" }}>
+      <Chart data={data}>
+        <ArgumentAxis />
+        <BarSeries valueField="value" argumentField="option" barWidth={0.8} />
+        <EventTracker />
+        <Tooltip />
+      </Chart>
+    </div>
   );
 }
 
