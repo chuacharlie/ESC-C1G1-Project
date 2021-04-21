@@ -1,5 +1,6 @@
 import ListOfStudents from "./ListOfStudents";
 import Feedback from "./Feedback";
+import Quizzes from "./Quizzes";
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -89,9 +90,11 @@ const ProfViewClass = ({ classData }) => {
       >
         <Tab label="Students" />
         <Tab label="Feedback" />
+        <Tab label="Quizzes" />
       </Tabs>
       {selectedTab === 0 && <ListOfStudents classData={classData} />}
       {selectedTab === 1 && <Feedback classData={classData} />}
+      {selectedTab === 2 && <Quizzes classData={classData} />}
     </div>
   );
 };

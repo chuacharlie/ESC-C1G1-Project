@@ -2,9 +2,11 @@ import ListTile from "../Components/ClassListTile";
 import ProfAddClass from "../Components/ProfAddClass";
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-import { Grid, Button, List } from "@material-ui/core";
+import { Grid, Button, List, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -18,12 +20,10 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
   },
   button: {
-    backgroundColor: "#f06292",
+    backgroundColor: "white",
     borderRadius: 20,
-    width: "16%",
-    height: "36px",
-    margin: "0 16px 0 0",
-    color: "white",
+    margin: "0 16px 0 30px",
+    color: "#f06292",
   },
   header: {
     display: "flex",
@@ -32,10 +32,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProfDashboard = ({onClickClass}) => {
+const ProfDashboard = ({ onClickClass }) => {
   const style = useStyles();
   const [classes, setClasses] = useState([
-    { "classTitle": "Dummy Class 101", "classCode": 1234 },
+    { classTitle: "Dummy Class 101", classCode: 1234 },
   ]);
 
   const onAdd = (classTitle) => {
@@ -44,12 +44,19 @@ const ProfDashboard = ({onClickClass}) => {
     setClasses([...classes, newClass]);
   };
 
-
   return (
     <div className={style.page}>
       <header className={style.header}>
         <ProfAddClass onAdd={onAdd} />
         <h1>Instructor Dashboard</h1>
+        <Button
+          className={style.button}
+          endIcon={<ExitToAppIcon />}
+          to={"/"}
+          component={Link}
+        >
+          Log Out
+        </Button>
       </header>
 
       <List>
@@ -65,6 +72,6 @@ const ProfDashboard = ({onClickClass}) => {
       </List>
     </div>
   );
-}
+};
 
 export default ProfDashboard;
