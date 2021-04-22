@@ -12,6 +12,7 @@ import ProfDashboard from "./Pages/ProfDashboard";
 import React, { useState } from "react";
 import StudentDashboard from "./Pages/StudentDashboard";
 import ProfViewClass from "./Pages/ProfViewClass";
+import StudentViewClass from "./Pages/StudentViewClass";
 //xy
 
 import firebase from "firebase/app";
@@ -25,37 +26,21 @@ import PostLectureRating from "./Pages/PostLectureRating";
 import SignUpPage from "./Pages/SignUpPage";
 
 
-// write firebase API here 12Apr xy
-
-// const auth=firebase.auth();
-// const firestore=firebase.firestore();
-
-// cost [user] = useAuthState(auth);
-
-// function SingIn(){
-//   const signInWithEmail=()=>{
-//     //const provider = new firebase.auth.
-//   }
-//   return(
-//     <button onClick={signInWithEmail}>Sign in with Email</button>
-//   )
-// }
-
-//-------------------------------------------------
 function App() {
-  //[variable name, funtion name]
   const [userType, setUserType] = useState("");
   const [classData, setClassData] = useState({});
+  const [classData2, setClassData2] = useState({});
 
-  // property 
   const onClickSignUp = (userType) => {
-    //set method 
     setUserType(userType);
     console.log(userType);
   };
 
   const onClickClass = (classData) => {
     setClassData(classData);
+  };
+  const onClickClass2 = (classData) => {
+    setClassData2(classData2);
   };
 
   return (
@@ -67,7 +52,7 @@ function App() {
           render={() => <>{<LoginPage onClickSignUp={onClickSignUp} />}</>}
         />
         <Route path="/StudentDashboard" 
-        render={() => <>{<StudentDashboard onClickClass={onClickClass} />}</>}
+        render={() => <>{<StudentDashboard onClickClass2={onClickClass2} />}</>}
         />
 
 
@@ -81,7 +66,7 @@ function App() {
         />
         <Route
           path={`/StudentViewClass:${classData.classCode}`}
-          render={() => <>{<ProfViewClass classData={classData} />}</>}
+          render={() => <>{<StudentViewClass classData2={classData2} />}</>}
         />
 
         <Route path="/StudentSlidesURL" component={StudentSlides} />
