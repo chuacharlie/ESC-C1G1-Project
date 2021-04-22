@@ -28,4 +28,7 @@ const initFirebase = firebase.initializeApp({
     } else {
       console.log('Error in signing up') // try catch 
     }
-  }
+}
+  
+const messaging = firebase.messaging();
+messaging.getToken({vapidKey: process.env.REACT_APP_FIREBASE_VAPID})
