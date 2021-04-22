@@ -32,4 +32,12 @@ export const SignUp = ({ name, email, password, userType }) => {
   }
 }
 
+var database = firebase.database();
+export function writeProfData() {
+  firebase.database().ref("profUser/" + "1").set({
+    username: "Prof Tharun",
+    email: "tharun@gmail.com"
+  })
+}
+
 export default firebase;

@@ -52,7 +52,7 @@ const LoginCheckPage = (props) => {
     <input
       value={credentials.password}
       type="password"
-      placeholder='enter your password'
+      placeholder='Enter your password'
       onChange={event => setCredentials({ email: credentials.email, password: event.target.value })}
     />
     <button

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Grid, Button, List, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import {writeProfData} from "../FirebaseAPI"
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -38,7 +39,12 @@ const ProfDashboard = ({ onClickClass }) => {
     { classTitle: "Dummy Class 101", classCode: 1234 },
   ]);
 
-  const onAdd = (classTitle) => {
+  const onAdd = async (classTitle) => {
+    
+    console.log("writing to firebase prof");
+    const response = await writeProfData();
+    console.log(response);
+
     const classCode = Math.floor(Math.random() * 10000) + 1;
     const newClass = { classCode, classTitle };
     setClasses([newClass, ...classes]);
