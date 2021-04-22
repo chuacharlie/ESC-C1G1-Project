@@ -26,21 +26,6 @@ import PostLectureRating from "./Pages/PostLectureRating";
 import SignUpPage from "./Pages/SignUpPage";
 
 
-// const auth=firebase.auth();
-// const firestore=firebase.firestore();
-
-// cost [user] = useAuthState(auth);
-
-// function SingIn(){
-//   const signInWithEmail=()=>{
-//     //const provider = new firebase.auth.G
-//   }
-//   return(
-//     <button onClick={signInWithEmail}>Sign in with Email</button>
-//   )
-// }
-
-//-------------------------------------------------
 function App() {
   const [userType, setUserType] = useState("");
   const [classData, setClassData] = useState({});
