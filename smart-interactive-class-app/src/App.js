@@ -25,8 +25,10 @@ import StudentSlides from "./Pages/StudentSlides";
 import PostLectureRating from "./Pages/PostLectureRating";
 import SignUpPage from "./Pages/SignUpPage";
 
-
 function App() {
+  const [instructorEmail, setInstructorEmail] = useState("");
+  const [studentEmail, setStudentEmail] = useState("");
+
   const [userType, setUserType] = useState("");
   const [classData, setClassData] = useState({});
   const [classData2, setClassData2] = useState({});
@@ -49,16 +51,39 @@ function App() {
         <Route
           exact
           path="/"
-          render={() => <>{<LoginPage onClickSignUp={onClickSignUp} />}</>}
+          render={() => (
+            <>
+              {
+                <LoginPage
+                  onClickSignUp={onClickSignUp}
+                  instructorEmail={instructorEmail}
+                  setInstructorEmail={setInstructorEmail}
+                  studentEmail={studentEmail}
+                  setStudentEmail={setStudentEmail}
+                />
+              }
+            </>
+          )}
         />
-        <Route path="/StudentDashboard" 
-        render={() => <>{<StudentDashboard onClickClass2={onClickClass2} />}</>}
+        <Route
+          path="/StudentDashboard"
+          render={() => (
+            <>{<StudentDashboard onClickClass2={onClickClass2} />}</>
+          )}
         />
-
 
         <Route
           path="/ProfDashboard"
-          render={() => <>{<ProfDashboard onClickClass={onClickClass} />}</>}
+          render={() => (
+            <>
+              {
+                <ProfDashboard
+                  onClickClass={onClickClass}
+                  profEmail={instructorEmail}
+                />
+              }
+            </>
+          )}
         />
         <Route
           path={`/ProfViewClass:${classData.classCode}`}

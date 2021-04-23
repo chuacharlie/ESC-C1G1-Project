@@ -66,21 +66,21 @@ const LoginCheckPage = (props) => {
 }
 
 
-const LoginPage = ({ onClickSignUp }) => {
+const LoginPage = ({ onClickSignUp, instructorEmail, setInstructorEmail, studentEmail, setStudentEmail }) => {
   const style = useStyles();
-  const [instructorEmail, setinstructorEmail] = useState("");
-  const [instructorPassword, setinstructorPassword] = useState("");
-  const [studentEmail, setstudentEmail] = useState("");
-  const [studentPassword, setstudentPassword] = useState("");
+  // const [instructorEmail, setInstructorEmail] = useState("");
+  const [instructorPassword, setInstructorPassword] = useState("");
+  // const [studentEmail, setStudentEmail] = useState("");
+  const [studentPassword, setStudentPassword] = useState("");
   const history = useHistory();
 
   const onInstructorLogin = async (e) => {
     e.preventDefault();
     if (instructorEmail === '' || instructorPassword === '') {
       if (instructorEmail === '') {
-        alert('email should not be empty')
+        alert('Email should not be empty')
       } else if (instructorPassword === '') {
-        alert('password should not be empty')
+        alert('Password should not be empty')
       }
     } else {
       if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(instructorEmail)) {
@@ -192,7 +192,7 @@ const LoginPage = ({ onClickSignUp }) => {
                 type="email"
                 placeholder="Email"
                 className={style.textField}
-                onChange={(e) => setinstructorEmail(e.target.value)}
+                onChange={(e) => setInstructorEmail(e.target.value)}
               />
               <TextField
                 id="instructor-password"
@@ -200,7 +200,7 @@ const LoginPage = ({ onClickSignUp }) => {
                 type="password"
                 placeholder="Password"
                 className={style.textField}
-                onChange={(e) => setinstructorPassword(e.target.value)}
+                onChange={(e) => setInstructorPassword(e.target.value)}
               />
               <Button
                 className={style.button}
@@ -240,7 +240,7 @@ const LoginPage = ({ onClickSignUp }) => {
                 type="email"
                 placeholder="Email"
                 className={style.textField}
-                onChange={(e) => setstudentEmail(e.target.value)}
+                onChange={(e) => setStudentEmail(e.target.value)}
               />
               <TextField
                 id="student-password"
@@ -248,7 +248,7 @@ const LoginPage = ({ onClickSignUp }) => {
                 type="password"
                 placeholder="Password"
                 className={style.textField}
-                onChange={(e) => setstudentPassword(e.target.value)}
+                onChange={(e) => setStudentPassword(e.target.value)}
               />
               <Button
                 className={style.button}

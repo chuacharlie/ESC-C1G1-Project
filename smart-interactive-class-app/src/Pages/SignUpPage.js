@@ -64,6 +64,9 @@ const SignUpPage = ({ userType }) => {
         .createUserWithEmailAndPassword(email, password)
         .then(async () => {
           let user = auth.currentUser;
+          user.updateProfile({
+            displayName: name,
+          });
           let data = {};
           if (userType === "instructor") {
             data = {

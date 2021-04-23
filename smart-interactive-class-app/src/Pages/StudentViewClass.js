@@ -2,6 +2,8 @@ import Iframe from "react-iframe";
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import firebaseServerKey from "../config";
+import axios from "axios";
 import {
   Box,
   Grid,
@@ -62,6 +64,32 @@ const StudentViewClass = ({ classData2 }) => {
     setSelectedTab(newSelectedTab);
   };
 
+  const url = "https://fcm.googleapis.com/fcm/send";
+  const [qn, setQn] = useState("");
+
+  const handleClick = () => {
+    console.log("firebase key");
+    console.log(firebaseServerKey);
+
+    axios.post(
+      url,
+      {
+        notification: {
+          title: "Question from student",
+          body: qn,
+          click_action: "http://localhost:3000/",
+        },
+        to:
+          "eNksOlm9yCQi29CAlx_jra:APA91bFfBjXTAkYALd_pkym9qMcVTLnIogJpOkEGWONK05-Vg53ZKtE8SkJV8_gxjYZNKwMsSzLSWIt45pcCpb0zK5GJN0CXN8DqroXD-REBcss9BIYYu5mkDA64pSbvsZUOEjnpUiCA",
+      },
+      {
+        headers: {
+          Authorization: `key=${firebaseServerKey}`
+        },
+      }
+    );
+  };
+
   return (
     <div className={style.page}>
       <header className={style.header}>
@@ -95,11 +123,13 @@ const StudentViewClass = ({ classData2 }) => {
           variant="outlined"
           placeholder="Enter your question here"
           className={style.textField}
+          onChange={(e) => setQn(e.target.value)}
         />
         <Button
           className={style.button}
-          to={"/PostLectureURL"}
+          // to={"/PostLectureURL"}
           component={Link}
+          onClick={handleClick}
         >
           Submit question
         </Button>

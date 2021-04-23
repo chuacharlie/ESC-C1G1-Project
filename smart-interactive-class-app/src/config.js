@@ -1,0 +1,2 @@
+const firebaseServerKey = "AAAAlM1a8YM:APA91bF1U-rDXTQgg2NZFNo_Y9oyscZ7-F0PwjoGBSw0TXfvLc40okSrrAyvt5sJ7CP6NeglRpq-snSOCU_W0TRAxSYfYS2tQSc_SbOs0Lz067da_6R-NsBWMLfWO_8i301J7BypIoZg"
+export default firebaseServerKey

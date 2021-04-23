@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import { Grid, Button, List, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import {writeProfData} from "../FirebaseAPI"
+import { getToken, onMessageListener } from "../FirebaseAPI";
+import Toast from "react-bootstrap/Toast";
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -33,25 +34,60 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProfDashboard = ({ onClickClass }) => {
+const ProfDashboard = ({ onClickClass, profEmail }) => {
   const style = useStyles();
   const [classes, setClasses] = useState([
     { classTitle: "Dummy Class 101", classCode: 1234 },
   ]);
 
   const onAdd = async (classTitle) => {
-    
-    console.log("writing to firebase prof");
-    const response = await writeProfData();
-    console.log(response);
-
     const classCode = Math.floor(Math.random() * 10000) + 1;
     const newClass = { classCode, classTitle };
     setClasses([newClass, ...classes]);
   };
 
+  const [show, setShow] = useState(false);
+  const [notification, setNotification] = useState({ title: "", body: "" });
+  const [isTokenFound, setTokenFound] = useState(false);
+  getToken(setTokenFound);
+
+  onMessageListener()
+    .then((payload) => {
+      setShow(true);
+      setNotification({
+        title: payload.notification.title,
+        body: payload.notification.body,
+      });
+      console.log(payload);
+    })
+    .catch((err) => console.log("failed: ", err));
+
   return (
     <div className={style.page}>
+      {/* // remember to comment out, just a check to see if local device token is returned  */}
+      {/* {isTokenFound && <h1> Notification permission enabled 👍🏻 </h1>}
+      {!isTokenFound && <h1> Need notification permission ❗️ </h1>} */}
+      {/* //----------------------------------------------------------------------------------// */}
+      <Toast
+        onClose={() => setShow(false)}
+        show={show}
+        delay={6000}
+        autohide
+        animation
+        style={{
+          position: "absolute",
+          top: 40,
+          right: 40,
+          minWidth: 200,
+        }}
+      >
+        <Toast.Header>
+          <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
+          <strong className="mr-auto">{notification.title}</strong>
+          <small>just now</small>
+        </Toast.Header>
+        <Toast.Body>{notification.body}</Toast.Body>
+      </Toast>
       <header className={style.header}>
         <ProfAddClass onAdd={onAdd} />
         <h1>Instructor Dashboard</h1>
