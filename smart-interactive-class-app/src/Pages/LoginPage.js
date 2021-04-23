@@ -98,7 +98,12 @@ const LoginPage = ({ onClickSignUp }) => {
                 .then(doc => {
                   const data = doc.data();
                   if (data !== undefined) {
-                    history.push('/ProfDashboard')
+                    //history.push('/ProfDashboard')
+                    localStorage.setItem('profUID', user.uid);
+                    history.push({
+                      pathname: '/ProfDashboard',
+                      state: { profUID: user.uid }
+                    })
                   } else {
                     alert('Invalid User')
                   }
@@ -141,7 +146,12 @@ const LoginPage = ({ onClickSignUp }) => {
                 .then(doc => {
                   const data = doc.data();
                   if (data !== undefined) {
-                    history.push('/StudentDashboard')
+                    //history.push('/StudentDashboard')
+                    localStorage.setItem('studUID', user.uid);
+                    history.push({
+                      pathname: '/StudentDashboard',
+                      state: { studUID: user.uid }
+                    })
                   } else {
                     alert('Invalid User')
                   }
