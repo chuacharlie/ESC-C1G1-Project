@@ -41,7 +41,8 @@ function App() {
   const onClickClass = (classData) => {
     setClassData(classData);
   };
-  const onClickClass2 = (classData) => {
+  const onClickClass2 = (classData2) => {
+    console.log(classData2);
     setClassData2(classData2);
   };
 

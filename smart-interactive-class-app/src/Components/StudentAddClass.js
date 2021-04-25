@@ -37,13 +37,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const StudentAddClass = ({onAdd}) => {
-  const [classTitle2, setClassTitle] = useState("");
+  const [classCode, setClassCode] = useState("");
   const style = useStyles();
 
   return (
     <Popup
       trigger={
-        <Button className={style.button} startIcon={<AddIcon />}>
+        <Button id="addclass" className={style.button} startIcon={<AddIcon />}>
           Join Class
         </Button>
       }
@@ -62,19 +62,21 @@ const StudentAddClass = ({onAdd}) => {
             <TextField
               id="class-title"
               variant="outlined"
-              placeholder="Class Title"
+              placeholder="Class Code"
               className={style.textField}
-              onChange = {(e) => setClassTitle(e.target.value)}
+              onChange = {(e) => setClassCode(e.target.value)}
             />
             <Box display="flex" flexDirection="row">
               <Button
+                id="join"
                 className={style.popupButton}
                 style={{ backgroundColor: "lightblue" }}
-                onClick = {() => onAdd(classTitle2)}
+                onClick = {() => onAdd(classCode)}
               >
                 Join
               </Button>
               <Button
+                id="cancel"
                 className={style.popupButton}
                 style={{ backgroundColor: "#f06292", color: "white" }}
                 onClick={() => {

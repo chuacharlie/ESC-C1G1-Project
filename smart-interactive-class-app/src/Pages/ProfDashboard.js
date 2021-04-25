@@ -1,14 +1,15 @@
+import firebase from "firebase/app";
 import ListTile from "../Components/ClassListTile";
 import ProfAddClass from "../Components/ProfAddClass";
+import Toast from "react-bootstrap/Toast";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { Grid, Button, List, IconButton } from "@material-ui/core";
+import { Button, List } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import { getToken, onMessageListener } from "../FirebaseAPI";
-import Toast from "react-bootstrap/Toast";
+import { onProfAddClass, getToken, onMessageListener } from "../FirebaseAPI";
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -34,22 +35,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProfDashboard = ({ onClickClass, profEmail }) => {
+const ProfDashboard = ({ onClickClass }) => {
   const style = useStyles();
-  const [classes, setClasses] = useState([
-    { classTitle: "Dummy Class 101", classCode: 1234 },
-  ]);
-
-  const onAdd = async (classTitle) => {
-    const classCode = Math.floor(Math.random() * 10000) + 1;
-    const newClass = { classCode, classTitle };
-    setClasses([newClass, ...classes]);
-  };
-
+  const [classes, setClasses] = useState([]);
   const [show, setShow] = useState(false);
   const [notification, setNotification] = useState({ title: "", body: "" });
   const [isTokenFound, setTokenFound] = useState(false);
   getToken(setTokenFound);
+
+  useEffect(async () => {
+    var user = firebase.auth().currentUser.displayName;
+    const ref = firebase.database().ref("profUser/" + user + "/classes");
+    try {
+      const classList = await ref.once("value").then(function (snapshot) {
+        return Object.keys(snapshot.toJSON());
+      });
+      const classLs = [];
+      for (var i = 0; i < classList.length; i++) {
+        const ref = firebase.database().ref("classes/" + classList[i]);
+        const classT = await ref.once("value").then(function (snapshot) {
+          return snapshot.val();
+        });
+        const classCode = classList[i];
+        const classTitle = classT["classTitle"];
+        const newClass = { classCode, classTitle };
+        classLs.push(newClass);
+      }
+      setClasses(classLs);
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+
+  const onAdd = (classTitle) => {
+    const classCode = Math.floor(Math.random() * 10000) + 1;
+    const newClass = { classCode, classTitle };
+    setClasses([newClass, ...classes]);
+    var user = firebase.auth().currentUser.displayName;
+    onProfAddClass(classCode, classTitle, user);
+  };
 
   onMessageListener()
     .then((payload) => {
@@ -92,6 +116,7 @@ const ProfDashboard = ({ onClickClass, profEmail }) => {
         <ProfAddClass onAdd={onAdd} />
         <h1>Instructor Dashboard</h1>
         <Button
+          id="logout"
           className={style.button}
           endIcon={<ExitToAppIcon />}
           to={"/"}

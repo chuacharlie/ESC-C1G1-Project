@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Box, Grid, Paper, Button, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { spacing } from "@material-ui/system";
+import {addInstructor, addStudent} from "../FirebaseAPI"
 //import { SignUp } from '../FirebaseAPI';
 
 import firebase from "../FirebaseAPI";
@@ -63,17 +64,20 @@ const SignUpPage = ({ userType }) => {
       await auth
         .createUserWithEmailAndPassword(email, password)
         .then(async () => {
-          let user = auth.currentUser;
-          user.updateProfile({
-            displayName: name,
-          });
+          let user = auth.currentUser;          
           let data = {};
           if (userType === "instructor") {
+            user.updateProfile({
+              displayName: name,
+            });
             data = {
               email: email,
               name: name
             }
           } else {
+            user.updateProfile({
+              displayName: studId,
+            });
             data = {
               email: email,
               name: name,
@@ -90,6 +94,11 @@ const SignUpPage = ({ userType }) => {
               .then((ref) => {
                 console.log(ref)
                 history.push(userType === "instructor" ? "/ProfDashboard" : "/StudentDashboard")
+                if (userType == "instructor") {
+                  addInstructor(email, name);
+                } else if (userType == "student") {
+                  addStudent(studId, email, name);
+                }
               })
               .catch((error) => {
                 const errorString = JSON.stringify(error);
@@ -155,6 +164,7 @@ const SignUpPage = ({ userType }) => {
             />
           }
           <Button
+            id="signup"
             className={style.button}
             to={
               userType === "instructor" ? "/ProfDashboard" : "/StudentDashboard"

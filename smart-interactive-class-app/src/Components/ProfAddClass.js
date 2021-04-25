@@ -44,7 +44,7 @@ const ProfAddClass = ({onAdd}) => {
   return (
     <Popup
       trigger={
-        <Button className={style.button} startIcon={<AddIcon />}>
+        <Button id="addclass" className={style.button} startIcon={<AddIcon />}>
           Add Class
         </Button>
       }
@@ -69,6 +69,7 @@ const ProfAddClass = ({onAdd}) => {
             />
             <Box display="flex" flexDirection="row">
               <Button
+                id="add"
                 className={style.popupButton}
                 style={{ backgroundColor: "lightblue" }}
                 onClick = {() => onAdd(classTitle)}
@@ -76,6 +77,7 @@ const ProfAddClass = ({onAdd}) => {
                 Add
               </Button>
               <Button
+                id="cancel"
                 className={style.popupButton}
                 style={{ backgroundColor: "#f06292", color: "white" }}
                 onClick={() => {

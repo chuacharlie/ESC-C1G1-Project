@@ -84,6 +84,7 @@ const PostLectureRating = () => {
     
               
               <Button
+                id = "endbutton"
                 className={style.button}
                 to={"/"}
                 component={Link}

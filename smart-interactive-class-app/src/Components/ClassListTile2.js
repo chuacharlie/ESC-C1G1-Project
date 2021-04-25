@@ -14,17 +14,17 @@ const useStyles = makeStyles((theme) => ({
 
 const ListTile = ({ classData2, onClick2 }) => {
   const style = useStyles();
-
+  console.log(classData2)
   return (
     <ListItem
       button
       className={style.ListItem}
       to={`/StudentViewClass:${classData2.classCode}`}
       component={Link}
-      onClick2={onClick2(classData2)}
+      onClick={onClick2(classData2)}
     >
       <ListItemText
-        primary={classData2.classTitle2}
+        primary={classData2.classTitle}
         secondary={"Class Code: " + classData2.classCode}
       />
     </ListItem>
